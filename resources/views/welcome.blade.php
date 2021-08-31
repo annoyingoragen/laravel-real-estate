@@ -405,7 +405,11 @@
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                 @if (session('role_id')===1)
+                    <a href="{{ url('admin/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                 @else
+                 <a href="{{ url('user/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                 @endif
             @else
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
@@ -422,8 +426,7 @@
             @if(count($products)>0)
             @foreach($products as $product)
            
-           
-           @if($product->rent_sale=="sale") 
+           @if($product->status !=0)
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                
                 <div class="grid grid-cols-1 md:grid-cols-2">
@@ -451,8 +454,16 @@
 
 
                                 <strong>Price </strong> {{$product->plotprice}}<br>
-                                <a type="button" href="/dashboard" class="btn btn-success ">Interested</a>
- 
+                                @if (Route::has('login'))
+                                                            
+                                        @if (session('role_id')===1)
+                                        <a type="button" href="admin/dashboard" class="btn btn-success ">Interested</a>
+                                        @else
+                                        <a type="button" href="user/dashboard" class="btn btn-success ">Interested</a>
+                                         @endif
+                                @else
+                                <a type="button" href="/login" class="btn btn-success ">Interested</a>
+                                @endif
                             </div>
 
                         </div>
@@ -463,7 +474,6 @@
             </div>
 
 
-@endif
 
 
 
@@ -471,7 +481,7 @@
 
 
 
-
+            @endif
 
             @endforeach
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">

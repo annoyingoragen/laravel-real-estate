@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" x-data="{role-id:2}">
             @csrf
 
             <div>
@@ -17,6 +17,9 @@
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="role_id" class="block mt-1 w-full" type="hidden" name="role_id" value=2 hidden required />
+                
+                
             </div>
 
             <div class="mt-4">
@@ -28,6 +31,33 @@
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
+<!-- {{
+            <div class="mt-4">
+                <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
+                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="2">Buyer</option>
+                    <option value="1">Admin</option>
+                </select>
+            </div>}} -->
+
+            <div class="mt-4" x-show="role_id == 1">
+                <x-jet-label for="address" value="{{ __('Address') }}" />
+                <x-jet-input id="address" class="block mt-1 w-full" type="text" :value="old('address')" name="address" />
+            </div>
+
+            <div class="mt-4" x-show="role_id == 1">
+                <x-jet-label for="cnic" value="{{ __('Cnic') }}" />
+                <x-jet-input id="cnic" class="block mt-1 w-full" type="text" :value="old('cnic')" name="cnic" />
+            </div>
+
+            <div class="mt-4" x-show="role_id == 1">
+                <x-jet-label for="phone" value="{{ __('Phone') }}" />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="text" :value="old('phone')" name="phone" />
+            </div>
+            
+        
+        
+        
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

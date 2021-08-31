@@ -1,7 +1,7 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('USER Dashboard') }}
+            {{ __('ADMIN Dashboard') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,8 @@
     @extends('layouts.master')
         
         @section('content')
+        <livewire:registration />
         
         
     </div>
-</x-app-layout>
+</x-admin-layout>

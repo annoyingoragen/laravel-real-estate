@@ -205,7 +205,7 @@ class Registration extends Component
                 {
                     if ($userdetail->id==$id)
                     {
-                        return view('show')->with('userdetail', $userdetail);
+                        return view('admin.show')->with('userdetail', $userdetail);
                     }
                 }
             }
@@ -294,7 +294,7 @@ class Registration extends Component
                 {
                     if ($userdetail->id==$id)
                     {
-                        return view('show')->with('userdetail', $userdetail);
+                        return view('admin.show')->with('userdetail', $userdetail);
                     }
                 }
             }
@@ -313,7 +313,7 @@ class Registration extends Component
                 {
                     if ($userdetail->id==$id)
                     {
-                        return view('edit')->with('userdetail', $userdetail);
+                        return view('admin.edit')->with('userdetail', $userdetail);
                     }
                 }
             }
@@ -327,7 +327,7 @@ class Registration extends Component
             ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')
             ->get(['userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle']);
         // $products=userplot::orderBy('id','desc')->paginate(5);
-        return view('display')->with('products', $products);
+        return view('admin.display')->with('products', $products);
     }
 
     public function view_properties_for_sale()
@@ -340,28 +340,19 @@ class Registration extends Component
         return view('welcome')->with('products', $products);
 
     }
-    public function view_properties_for_rent()
-    {
-        
-        $products = userplot::join('plotimages', 'userplots.plotimagedockey', '=', 'plotimages.plotimagedockey')
-            ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')->paginate(4,array('userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle'));
-            // ->get(['userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle']);
-        // $products=userplot::orderBy('id','desc')->paginate(5);
-        return view('forrent')->with('products', $products);
-
-    }
+    
 
     public function viewphotos($id)
     {   
         $plotimages=plotimages::where('plotimagedockey', $id)->first();
-        return view('displayphotos')->with('images',$plotimages);
+        return view('admin.displayphotos')->with('images',$plotimages);
     }
 
     public function viewfile($id){
         
 
         $plotfile=plotfile::where('plotimagedockey', $id)->first();
-        return view('displayfile')->with('file',$plotfile);
+        return view('admin.displayfile')->with('file',$plotfile);
     }
     
 
