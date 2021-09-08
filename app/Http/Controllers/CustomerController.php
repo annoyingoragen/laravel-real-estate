@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        ddd("oof");
+        
         return view('dashboard');
     }
 }
