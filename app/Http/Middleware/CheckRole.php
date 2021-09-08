@@ -16,7 +16,7 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        ddd(session('role_id'));
+       
         if (session('role_id')===1)
         {
             

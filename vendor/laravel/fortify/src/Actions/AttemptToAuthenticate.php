@@ -2,11 +2,14 @@
 
 namespace Laravel\Fortify\Actions;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Routing\Route;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\LoginRateLimiter;
+use Illuminate\Support\Facades\Auth;
 
 class AttemptToAuthenticate
 {
@@ -54,6 +57,18 @@ class AttemptToAuthenticate
             $request->only(Fortify::username(), 'password'),
             $request->filled('remember'))
         ) {
+            if( Auth::user()->role_id===1)
+            {
+                session(['role_id'=>1]);
+                return redirect(RouteServiceProvider::ADMIN_HOME);
+            }
+            else if(Auth::user()->role_id===2)
+            {
+                
+                    session(['role_id'=>2]);
+                    return redirect(RouteServiceProvider::HOME);
+                
+            }
             return $next($request);
         }
 

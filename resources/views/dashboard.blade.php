@@ -12,5 +12,6 @@
         @section('content')
         
         
+        
     </div>
 </x-app-layout>
