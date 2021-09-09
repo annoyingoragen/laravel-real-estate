@@ -422,8 +422,7 @@
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         For Sale
-@php  ddd(session('role_id')); @endphp
-fbfg
+@php  ddd(session('role_id')); @endphp 
             @if(count($products)>0)
             @foreach($products as $product)
            

@@ -12,9 +12,9 @@ Route::get('/', [Registration::class,'view_properties_for_sale']);// {
 // });
 
 
-// Route::get('/form', function () {
-//     return view('dashboard');
-// });
+Route::get('/index', function () {
+    return view('index');
+});
 
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', function () {
     return view('admin.dashboard');
