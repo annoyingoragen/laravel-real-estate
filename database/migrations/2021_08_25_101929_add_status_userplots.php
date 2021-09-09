@@ -14,7 +14,7 @@ class AddStatusUserplots extends Migration
     public function up()
     {
             Schema::table('userplots',function (Blueprint $table){
-                $table->boolean('status');
+                $table->boolean('status')->default(1);
         });
     }
 

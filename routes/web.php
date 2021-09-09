@@ -10,14 +10,11 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/', [Registration::class,'view_properties_for_sale']);// {
     // return view('welcome');
 // });
-Route::middleware(['auth:sanctum', 'verified'])->get('/display', [Registration::class,'viewaallusers'])->name('display');
 
 
-
-
-Route::get('/form', function () {
-    return view('dashboard');
-});
+// Route::get('/form', function () {
+//     return view('dashboard');
+// });
 
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', function () {
     return view('admin.dashboard');

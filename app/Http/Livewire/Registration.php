@@ -279,7 +279,7 @@ class Registration extends Component
             'plotimagedockey' => $this->plotimagedockey
         ]);
 
-        return redirect()->to('/form');
+        return redirect()->to('/admin/dashboard');
     }
 
     public function viewshow($id)
