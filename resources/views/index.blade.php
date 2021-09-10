@@ -50,11 +50,27 @@
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#header" class="page-scroll">Home</a></li>
               <li><a href="#about" class="page-scroll">About</a></li>
-              <li><a href="./Rent & Sell/index.html" class="page-scroll">Property</a></li>
+              <li><a href="Rent & Sell/index" class="page-scroll">Property</a></li>
               <li><a href="#portfolio" class="page-scroll">Projects</a></li>
             
               <li><a href="#contact" class="page-scroll">Contact</a></li>
-              <input type="text" placeholder="Search">
+              @if (Route::has('login'))
+       
+                  @auth
+                       @if (session('role_id')===1)
+                      <li>    <a href="{{ url('admin/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a></li>
+                       @else
+                       <li><a href="{{ url('user/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a></li>
+                       @endif
+                  @else
+                <li>  <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a></li>
+      
+                  @if (Route::has('register'))
+                 <li> <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></li>
+                  @endif
+                  @endauth
+              
+              @endif
             </ul>
            
           </div>
