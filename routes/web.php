@@ -7,7 +7,7 @@ use App\Http\Livewire\Registration;
 use Illuminate\Support\Facades\Storage;
 
 
-Route::get('/', [Registration::class,'view_properties_for_sale']);// {
+Route::get('Rent & Sell/index', [Registration::class,'view_properties_for_sale']);// {
     // return view('welcome');
 // });
 
@@ -17,9 +17,9 @@ Route::get('/index', function () {
 });
 
 
-Route::get('Rent & Sell/index', function () {
-    return view('Rent & Sell.index');
-});
+// Route::get('Rent & Sell/index', function () {
+//     return view('Rent & Sell.index');
+// });
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
