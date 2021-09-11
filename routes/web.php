@@ -39,7 +39,6 @@ Route::middleware(['auth:sanctum', 'verified','role'])->post('users/userdeleted'
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/show/{id}',[Registration::class,'viewshow']);// to display user and plot information
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/edit/{id}',[Registration::class,'viewedit']);//to open the page where user and plot information will be edited
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/showphotos/{id}',[Registration::class,'viewphotos']);//to get a preview of plot photos
-Route::middleware(['auth:sanctum', 'verified','role'])->get('/showfile/{id}',[Registration::class,'viewfile']);//to get a preview of plot file
 Route::middleware(['auth:sanctum', 'verified','role'])->post('uploadphotos',[Registration::class,'uploadphotos']);//to add more photos in existing plot photos
 Route::middleware(['auth:sanctum', 'verified','role'])->get('removephoto/{id}/{photoid}',[Registration::class,'removephotos']);//to remove single photo
 

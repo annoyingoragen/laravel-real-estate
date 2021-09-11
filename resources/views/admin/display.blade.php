@@ -65,9 +65,13 @@
                     </td>
                     
 
-                    <td>    
+                    <td>     
+                        @php
+                        $product->plotfiletitle=json_decode($product->plotfiletitle,true);
+                        @endphp
                         
-                        <a class="btn btn-info" href="showfile/{{$product->plotimagedockey}}">View file</a>
+                        
+                        <a class="btn btn-info"  target="_blank" href="{{asset('storage/files/'.$product->plotfiletitle) }}">View file</a>
             
 
                     </td>

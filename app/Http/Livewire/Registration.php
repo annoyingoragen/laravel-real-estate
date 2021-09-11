@@ -346,24 +346,91 @@ class Registration extends Component
     {   
         $plotimages=plotimages::where('plotimagedockey', $id)->first();
         return view('admin.displayphotos')->with('images',$plotimages);
-    }
-
-    public function viewfile($id){
-        
-
-        $plotfile=plotfile::where('plotimagedockey', $id)->first();
-        return view('admin.displayfile')->with('file',$plotfile);
-    }
-    
-
+    }    
     public function deleteuser()
     {
         
         $id=request('id');
         $user =userplot::find($id);
         $file = plotfile::where('plotimagedockey', $user->plotimagedockey)->first();
+        
+
+        $randomNumber =$user->plotimagedockey;
+
+        
+        $filedetails = plotfile::where('plotimagedockey', $randomNumber)->first();
+
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /**************deleting previous files from file folders */
+        $file = request('plotfile');
+        if(!empty($file)){
+            $previousfilename = $filedetails->plotfiletitle;
+            $previousfilename = json_decode($previousfilename, true);
+            if (File::exists(public_path('storage/files/' . $previousfilename))) {
+                File::delete(public_path('storage/files/' . $previousfilename));
+            } else {
+                dd(public_path('storage\files\\' . $previousfilename));
+            }    
+        }
+
+
+
+
         $file->delete();
+
+
         $photo = plotimages::where('plotimagedockey', $user->plotimagedockey)->first();
+
+
+
+        $photodetails = plotimages::where('plotimagedockey', $randomNumber)->first();
+
+        $photo = array();
+        $photo = request('photo');
+
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+        /*********************************************************************** */
+
+        /**************deleting previous photos from photo folders */
+
+        if (!empty($photo)) {
+            $previousphotonames = $photodetails->plotimagetitle;
+            $previousphotonames = json_decode($previousphotonames, true);
+
+            if (count($previousphotonames) > 0) {
+
+                foreach ($previousphotonames as $f) {
+                    $filen = str_replace('"', '', $f);
+                    if (File::exists(public_path('storage/photos/' . $filen))) {
+                        File::delete(public_path('storage/photos/' . $filen));
+                    } else {
+                        dd(public_path('storage\photos\\' . $filen));
+                    }
+                }
+            } else {
+
+                $filen = str_replace('"', '', $previousphotonames->plotimagetitle);
+                if (File::exists(public_path('storage/photos/' . $filen))) {
+                    File::delete(public_path('storage/photos/' . $filen));
+                } else {
+                    dd(public_path('storage\photos\\' . $filen));
+                }
+            }
+        }
+
+
+        
+
+
         $photo->delete();
          $user->delete();
         
