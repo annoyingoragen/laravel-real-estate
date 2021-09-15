@@ -96,88 +96,86 @@
       </div>
     </nav>
 
-    
+
     <div class="main-section">
-      <div class="container">
-        <div class="row">
+            <div class="container">
+            
+              <div class="row">
+              @if(count($products)>0)
+              @foreach($products as $product)
+            
+            @if($product->status !=0)
+            
+                      
+                            <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+                                  <div class="main_card_section">
+                                      @php
+                                      $product->plotimagetitle=json_decode($product->plotimagetitle,true);
+                                      @endphp
+                                      @foreach($product->plotimagetitle as $f)
+                                      @php $filen=str_replace('"','',$f);@endphp
 
-
+                                      <div class="image_side" style="background: url('{{ asset('storage/photos/'.$f) }}');"></div>
+                                     @if ($product->rent_sale=="sale")
+                                      <div class="sell">{{$product->rent_sale}}</div>
+                                      @else
+                                      
+                                      <div class="rent">{{$product->rent_sale}}</div>
+                                      @endif
+                                      @php break @endphp
+                                                            @endforeach
+                                        <div class="card_text">
+                                          <h5 style="margin-left: 20px !important;">
+                                            <span style="color: #f3b43f ">{{$product->plotprice}}</span> <br />
+                                            {{$product->plotaddress}}
+                                          </h5>
+                                          <p>
+                                            8 Bedrooms With Attached Baths drawing Room Dinning Room (2)
+                                            tv Lounge (3) kitchen (3) beautiful... more
+                                          </p>
+                                          <span class="btn_group">
+                                            @if (Route::has('login'))
+       
+            @auth
+                                            @if (session('role_id')===1)
+                                            
+                                          
+                                            <a type="button" href="/admin/dashboard" class="btn btn-success ">Interested</a>
+                                            @else
+                                            <p>{{Route::has('login')}}</p>
+                                            <a type="button" href="/user/dashboard" class="btn btn-success ">Interested</a>
+                                             @endif
+                                    @else
+                                    <a type="button" href="/login" class="btn btn-success ">Interested</a>
+                                    @endif
+                                           
+                                    @endauth
+                                          </span>
+                                        </div>
+                                    </div>  
+                      
+                             </div>
           
-          @if(count($products)>0)
-          @foreach($products as $product)
-         
-         @if($product->status !=0)
-
-
-
-
-
-
-
-          <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-            <div class="main_card_section">
-              @php
-              $product->plotimagetitle=json_decode($product->plotimagetitle,true);
-              @endphp
-              @foreach($product->plotimagetitle as $f)
-              @php $filen=str_replace('"','',$f);@endphp
-
-              <div class="image_side" style="background: url('{{ asset('storage/photos/'.$f) }}');"></div>
-              <div class="rent">Rent</div>
-              @php break @endphp
-                                    @endforeach
-              <div class="card_text">
-                <h5 style="margin-left: 20px !important;">
-                  <span style="color: #f3b43f ">48.45LACK</span> <br />
-                  G-9, ISLAMABAD
-                </h5>
-                <p>
-                  8 Bedrooms With Attached Baths drawing Room Dinning Room (2)
-                  tv Lounge (3) kitchen (3) beautiful... more
-                </p>
-                <span class="btn_group">
-                  <button>EMail</button>
-                  <button>More Info</button>
-                </span>
-              </div>
-            </div>
+                              <!-- First Card Row -->
+                          @php
+                              if($loop->iteration%3==0)
+                              {
+                              echo("</div>");
+                              echo('<div class="row secondRow">');
+                              }
+                               @endphp
+           
+                            
+                            @endif
+                            @endforeach
+                    
+                    <!-- second Card row -->
+             </div>        
           </div>
-        
-        
-        <!-- First Card Row -->
-        <div class="row secondRow">
-          <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-            <div class="main_card_section">
-              <div class="image_side" style="background: url('{{ asset('storage/photos/'.$f) }}');"></div>
-              <div class="sell">Sell</div>
-              <div class="card_text">
-                <h5 style="margin-left: 20px !important;">
-                  <span style="color: #f3b43f ">48.45LACK</span> <br />
-                  G-9, ISLAMABAD
-                </h5>
-                <p>
-                  6 Bedrooms With Attached Baths drawing Room Dinning Room (2)
-                  tv Lounge (3) kitchen (3) beautiful... more
-                </p>
-                <span class="btn_group">
-                  <button>EMail</button>
-                  <button>More Info</button>
-                </span>
-              </div>
-            </div>
-          </div>
-      
-        </div>
-        </div>
-        <!-- second Card row -->
-        
-        @endif
-
-        @endforeach
-        
-     </div>
    
     </div>
+
+
     <nav aria-label="">
       <ul class="pagination">
         {{$products->links()}}
