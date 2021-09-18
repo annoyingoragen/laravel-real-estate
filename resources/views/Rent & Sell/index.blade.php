@@ -101,10 +101,145 @@
             <div class="container">
             
               <div class="row">
+                
+                @if (Route::has('login'))
+
+                @auth
+
+
+
+                @if(count($products)>0)
+
+
+
+
+                @foreach($products as $product)
+              
+              @if($product->status !=0)
+               
+              @php 
+                $previous_interests=Auth::user()->interested_in;
+                $previous_interests=json_decode($previous_interests,true);
+                
+
+              @endphp
+                        
+                              <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+                                    <div class="main_card_section">
+                                        @php
+                                        $product->plotimagetitle=json_decode($product->plotimagetitle,true);
+                                        @endphp
+                                        @foreach($product->plotimagetitle as $f)
+                                        @php $filen=str_replace('"','',$f);@endphp
+  
+                                        <div class="image_side" style="background: url('{{ asset('storage/photos/'.$f) }}');"></div>
+                                       @if ($product->rent_sale=="sale")
+                                        <div class="sell">{{$product->rent_sale}}</div>
+                                        @else
+                                        
+                                        <div class="rent">{{$product->rent_sale}}</div>
+                                        @endif
+                                        @php break @endphp
+                                                              @endforeach
+                                          <div class="card_text">
+                                            <h5 style="margin-left: 20px !important;">
+                                              <span style="color: #f3b43f ">{{$product->plotprice}}</span> <br />
+                                              {{$product->plotaddress}}
+                                            </h5>
+                                            <p>
+                                             8 Bedrooms With Attached Baths drawing Room Dinning Room (2)
+                                              tv Lounge (3) kitchen (3) beautiful... more
+                                            </p>
+                                            <span class="btn_group">
+
+
+
+
+                                              @if (Route::has('login'))
+         
+              @auth
+              @if (!in_array($product->plotimagedockey, $previous_interests))
+
+                                              @if (session('role_id')===1)
+                                              
+                                            
+                                              <a type="button" href="/interestedin/{{$product->plotimagedockey}}/admin/dashboard" class="btn btn-success ">Interested</a>
+                                              @else
+                                              
+                                              <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
+                                               @endif
+@else
+<a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" disabled class="btn btn-success ">Processing</a>
+                                            
+                                               @endif
+                                      @else
+                                      <a type="button" href="/register" class="btn btn-success ">Interested</a>
+                                      @endif
+                                             
+                                      @endauth
+                                            </span>
+                                          </div>
+                                      </div>  
+                        
+                               </div>
+            
+                                <!-- First Card Row -->
+                            @php
+                                if($loop->iteration%3==0)
+                                {
+                                echo("</div>");
+                                echo('<div class="row secondRow">');
+                                }
+                                 @endphp
+                              @endif
+                              @endforeach
+                      
+                      <!-- second Card row -->
+               </div>        
+            </div>
+     
+      </div>
+  
+  
+      <nav aria-label="">
+        <ul style="padding: 15px;
+        font-size: 18px; " class="pagination page-link ">
+          {{$products->links()}}
+          @else
+          <p>No plots found</p>
+          @endif
+  
+        </ul>
+      </nav>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@else
+
               @if(count($products)>0)
+
+
+
+
               @foreach($products as $product)
             
             @if($product->status !=0)
+                
+
+          
             
                       
                             <div class="col-sm-12 col-md-4 col-lg-4 col-12">
@@ -146,7 +281,7 @@
                                             <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
                                              @endif
                                     @else
-                                    <a type="button" href="/login" class="btn btn-success ">Interested</a>
+                                    <a type="button" href="/register" class="btn btn-success ">Interested</a>
                                     @endif
                                            
                                     @endauth
@@ -186,6 +321,9 @@
 
       </ul>
     </nav>  
+@endif
+@endauth
+
 
     <!-- Footer Section -->
     <div id="footer">
@@ -201,4 +339,4 @@
     <script type="text/javascript" src="jsindex/contact_me.js"></script>
     <script type="text/javascript" src="jsindex/main.js"></script>
   </body>
-</html>
+

@@ -14,6 +14,11 @@ Route::get('/', function() {
      return view('index');
 });
 
+Route::get('index', function() {
+    return view('index');
+});
+
+
 
 
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', function () {

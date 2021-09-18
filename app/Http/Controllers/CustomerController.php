@@ -37,7 +37,7 @@ class CustomerController extends Controller
         
            $user->interested_in=$interests;
             $user->save();
-           dd($interests);
+          
         }
         
         return view('dashboard');
