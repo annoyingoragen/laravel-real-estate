@@ -140,10 +140,10 @@
                                             @if (session('role_id')===1)
                                             
                                           
-                                            <a type="button" href="/admin/dashboard" class="btn btn-success ">Interested</a>
+                                            <a type="button" href="/interestedin/{{$product->plotimagedockey}}/admin/dashboard" class="btn btn-success ">Interested</a>
                                             @else
-                                            <p>{{Route::has('login')}}</p>
-                                            <a type="button" href="/user/dashboard" class="btn btn-success ">Interested</a>
+                                            
+                                            <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
                                              @endif
                                     @else
                                     <a type="button" href="/login" class="btn btn-success ">Interested</a>
@@ -177,7 +177,8 @@
 
 
     <nav aria-label="">
-      <ul class="pagination">
+      <ul style="padding: 15px;
+      font-size: 18px; " class="pagination page-link ">
         {{$products->links()}}
         @else
         <p>No plots found</p>

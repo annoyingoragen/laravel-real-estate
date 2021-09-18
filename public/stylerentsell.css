@@ -122,7 +122,7 @@ box-shadow:0 2px 5px #ccc;
  justify-content: center;
 }
 /* pagination */
-.pagination .page-item a {
+.pagination .page-link a {
   width: 100px !important;
   height: 50px !important;
   text-align: center;
@@ -135,7 +135,7 @@ box-shadow:0 2px 5px #ccc;
   border-radius: 10px;
 
 }
-.pagination .page-item a:hover {
+.pagination .page-link a:hover {
   background: #ffa500 !important;
   box-shadow: none;
 }

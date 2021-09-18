@@ -7,31 +7,26 @@ use App\Http\Livewire\Registration;
 use Illuminate\Support\Facades\Storage;
 
 
-Route::get('Rent & Sell/index', [Registration::class,'view_properties_for_sale']);// {
-    // return view('welcome');
-// });
+Route::get('Rent & Sell/index', [Registration::class,'view_properties_for_sale']);
 
 
-Route::get('/index', function () {
-    return view('index');
+Route::get('/', function() {
+     return view('index');
 });
 
 
-// Route::get('Rent & Sell/index', function () {
-//     return view('Rent & Sell.index');
-// });
+
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
 
-Route::middleware(['auth:sanctum', 'verified',])->get('/user/dashboard',[ CustomerController::class,'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/user/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-// Route::group(['middleware' => ['web']], function () {
-//     Route::get('storage/{filename}', function ($filename) {
-//         // $userid = session()->get('user')->id;
-//         return Storage::get($filename);
-//     });
-// });
+Route::middleware(['auth:sanctum', 'verified',])->get('/interestedin/{id}/user/dashboard',[ CustomerController::class,'index']);
+
+
 Route::middleware(['auth:sanctum', 'verified','role'])->get('/display', [Registration::class,'viewaallusers'])->name('display');// will display all users
 Route::middleware(['auth:sanctum', 'verified','role'])->post('display/{id}', [Registration::class,'update']);//this path will be used to take updated values
 Route::middleware(['auth:sanctum', 'verified','role'])->post('users/userdeleted', [Registration::class,'deleteuser']);

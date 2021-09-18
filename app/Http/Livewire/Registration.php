@@ -334,7 +334,7 @@ class Registration extends Component
     {
         
         $products = userplot::join('plotimages', 'userplots.plotimagedockey', '=', 'plotimages.plotimagedockey')
-            ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')->paginate(4,array('userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle'));
+            ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')->paginate(2,array('userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle'));
             // ->get(['userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle']);
         // $products=userplot::orderBy('id','desc')->paginate(5);
         return view('Rent & Sell.index')->with('products', $products);
