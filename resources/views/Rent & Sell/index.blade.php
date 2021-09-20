@@ -143,40 +143,52 @@
                                                               @endforeach
                                           <div class="card_text">
                                             <h5 style="margin-left: 20px !important;">
-                                              <span style="color: #f3b43f ">{{$product->plotprice}}</span> <br />
-                                              {{$product->plotaddress}}
+                                              <span style="color: #f3b43f ">Price: {{$product->plotprice}}</span> <br />
+                                              <br><br>
+                                              Address:<br> {{$product->plotaddress}}<br><br>
+                                              
+                                              <span style="color: #f3b43f ">Last Date to Apply:<br> {{$product->bookingdate}}</span> <br />
                                             </h5>
-                                            <p>
-                                             8 Bedrooms With Attached Baths drawing Room Dinning Room (2)
-                                              tv Lounge (3) kitchen (3) beautiful... more
-                                            </p>
+                                            
                                             <span class="btn_group">
 
 
 
 
-                                              @if (Route::has('login'))
+             @if (Route::has('login'))
          
               @auth
-              @if (!in_array($product->plotimagedockey, $previous_interests))
+                      @if($previous_interests!=null)
+                            @if (!in_array($product->plotimagedockey, $previous_interests))
 
                                               @if (session('role_id')===1)
                                               
                                             
-                                              <a type="button" href="/interestedin/{{$product->plotimagedockey}}/admin/dashboard" class="btn btn-success ">Interested</a>
+                                                <a type="button" href="/interestedin/{{$product->plotimagedockey}}/admin/dashboard" class="btn btn-success ">Interested</a>
                                               @else
                                               
-                                              <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
+                                                <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
                                                @endif
-@else
-<a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" disabled class="btn btn-success ">Processing</a>
+                            @else
+                                              <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" disabled class="btn btn-success disabled">Processing</a>
                                             
-                                               @endif
-                                      @else
-                                      <a type="button" href="/register" class="btn btn-success ">Interested</a>
-                                      @endif
+                            @endif
+                      @else
+                      @if (session('role_id')===1)
+                                              
+                                            
+                      <a type="button" href="/interestedin/{{$product->plotimagedockey}}/admin/dashboard" class="btn btn-success ">Interested</a>
+                    @else
+                    
+                      <a type="button" href="/interestedin/{{$product->plotimagedockey}}/user/dashboard" class="btn btn-success ">Interested</a>
+                     @endif   
+                      @endif
+              @endauth
+              @else
+                            <a type="button" href="/register" class="btn btn-success ">Interested</a>
+              @endif
                                              
-                                      @endauth
+              
                                             </span>
                                           </div>
                                       </div>  

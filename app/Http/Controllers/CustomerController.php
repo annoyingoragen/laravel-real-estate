@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\userplot;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -39,7 +40,22 @@ class CustomerController extends Controller
             $user->save();
           
         }
+        $products = userplot::join('plotimages', 'userplots.plotimagedockey', '=', 'plotimages.plotimagedockey')
+        ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')->paginate(6,array('userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle'));
+        return  redirect()->to('/user/dashboard');
+    }
+
+    public function viewdashboard()
+    {
         
-        return view('dashboard');
+        $products = userplot::join('plotimages', 'userplots.plotimagedockey', '=', 'plotimages.plotimagedockey')
+        ->join('plotfiles', 'userplots.plotimagedockey', '=', 'plotfiles.plotimagedockey')->paginate(100000,array('userplots.*', 'plotimages.plotimagetitle', 'plotfiles.plotfiletitle'));
+        if(session('role_id')===1){
+            return view ('admin.dashboard')->with('products', $products);
+        }
+        else{
+            
+        return view('dashboard')->with('products', $products);
+        }
     }
 }

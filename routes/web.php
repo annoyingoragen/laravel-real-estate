@@ -25,9 +25,7 @@ Route::middleware(['auth:sanctum', 'verified','role'])->get('/admin/dashboard', 
     return view('admin.dashboard');
 })->name('admin.dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/user/dashboard',[ CustomerController::class,'viewdashboard'])->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified',])->get('/interestedin/{id}/user/dashboard',[ CustomerController::class,'index']);
 
