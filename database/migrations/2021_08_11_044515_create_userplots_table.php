@@ -28,13 +28,10 @@ class CreateUserplotsTable extends Migration
 
             $table->string('plotaddress')->unique();
             $table->string('regnum')->unique();
-            $table->integer('pricepermarla');
+            $table->integer('pricepermarla')->nullable()->change();
             $table->date('bookingdate');
-            $table->integer('plotprice');
+            $table->integer('plotprice')->nullable()->change();
             $table->integer('plotimagedockey')->unique();
-        
-        // 'plotfile'=>"required",
-        // 'photo' => 'image|max:1024',
             
         });
     }

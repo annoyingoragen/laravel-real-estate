@@ -50,13 +50,12 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-span-6 flex justify-center gap-6" >
+                                 <div class="col-span-6 flex justify-center gap-6" >
                                    
                                     <div style="width:50%;" class="col-span-3">
                                     <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
                                     <input type="number" wire:model="age" id="age" autocomplete="age" value="18" min="18" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                        </div>
+                                  </div>
                                         
                                 <div style="width:50%;" class="col-span-3 sm:col-span-3">
                                             <label for="cnic" class="block text-sm font-medium text-gray-700">CNIC</label>
@@ -112,6 +111,132 @@
                                     <input type="text" wire:model="plotaddress" id="plotaddress" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     @error('plotaddress') <span ...>{{ $message }}</span> @enderror
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                    <textarea id="description" wire:model="description" class="form-control" placeholder="Enter description of your Property" rows="4" required></textarea>
+                                     @error('plotaddress') <span ...>{{ $message }}</span> @enderror
+                                </div>
+
+                                <div  class="col-span-6 flex justify-center gap-6" >
+                                    <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                                        <select wire:model="category" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            <option value="Residential" selected>Residential</option>
+                                
+                                                <option value="Residential">Residential</option>
+                                                <option value="Commercial">Commercial</option>
+                                        
+                                        </select> @error('name') <span ...>{{ $message }}</span> @enderror
+                                    </div>
+    
+                                    <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                        <label for="furnished" class="block text-sm font-medium text-gray-700">Furnished</label>
+                                        <select wire:model="furnished" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            <option value="Unfurnished" selected>Unfurnished</option>
+                                
+                                                <option value="Furnished">Furnished</option>
+                                                <option value="Unfurnished">Unfurnished</option>
+                                        
+                                        </select>
+                                   
+                                        @error('fathername') <span ...>{{ $message }}</span> @enderror
+                                    </div>
+                               </div>
+
+                               <div  class="col-span-6 flex justify-center gap-6" >
+
+                                <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                    <label for="bedrooms" class="block text-sm font-medium text-gray-700">Bedrooms</label>
+                                    <input type="number" wire:model="bedrooms" id="bedrooms" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    @error('fathername') <span ...>{{ $message }}</span> @enderror
+                                </div>
+
+                                <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                    <label for="bathrooms" class="block text-sm font-medium text-gray-700">Bathrooms</label>
+                                    <input type="text" wire:model="bathrooms" id="bathrooms" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    @error('name') <span ...>{{ $message }}</span> @enderror
+                                </div>
+
+                           </div>
+
+                           <div  class="col-span-6 flex justify-center gap-6" >
+                            <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                <label for="floorlevel" class="block text-sm font-medium text-gray-700">Floor</label>
+                                <input type="number" wire:model="floorlevel" id="floorlevel" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('name') <span ...>{{ $message }}</span> @enderror
+                            </div>
+
+                            <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                                <label for="area" class="block text-sm font-medium text-gray-700">Property Area in sq feet</label>
+                                <input type="text" wire:model="area" id="area" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('fathername') <span ...>{{ $message }}</span> @enderror
+                            </div>
+                       </div>
+
+                       <div  class="col-span-6 flex justify-center gap-6" >
+                        <div style="width:50%;" class="col-span-6 sm:col-span-3">                            
+                                <label for="rent" class="block text-sm font-medium text-gray-700">Rent / Sell</label>
+                                  
+                                        <select wire:model="rent" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            <option value="" selected>Choose state</option>
+                                
+                                                <option value="Rent">Rent</option>
+                                                <option value="Sell">Sell</option>
+                                        
+                                        </select>
+                                   
+                                </div>
+                            
+
+                        <div style="width:50%;" class="col-span-6 sm:col-span-3">
+                            <label for="mapaddress" class="block text-sm font-medium text-gray-700">Map</label>
+                            <input type="text" wire:model="mapaddress" id="mapaddress" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('fathername') <span ...>{{ $message }}</span> @enderror
+                        </div>
+                   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="col-span-6 flex justify-center gap-6" >
                                 <div class="col-span-4 sm:col-span-3">
                                     <label for="registration number" class="block text-sm font-medium text-gray-700">Registration Number</label>

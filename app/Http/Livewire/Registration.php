@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Livewire;
-
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\userplot;
@@ -26,10 +25,23 @@ class Registration extends Component
     public $telephone;
     public $cellno;
 
+
     public $plotaddress;
     public $regnum;
     public $pricepermarla;
     public $bookingdate;
+    //sdfkjhsdk
+    public $Category;
+    public $furnished;
+    public $bedrooms;
+    public $bathrooms;
+    public $floorlevel;
+    public $area;
+    public $rent;
+    public $description;
+    public $mapaddress; 
+    //dfjkshd
+
     public $plotprice;
     public $plotfile;
     public $photo = [];
@@ -47,6 +59,16 @@ class Registration extends Component
         'permanentaddress' => 'required|max:100',
         'age' => "required",
 
+
+        'Category'=>"required",
+        'furnished'=>"required",
+        'bedrooms'=>"required",
+        'bathrooms'=>"required",
+        'floorlevel'=>"required",
+        'area'=>"required",
+        'buy'=>"required",
+        'description'=>"required",
+        'mapaddress'=>"required",
         'plotaddress' => "required",
         'regnum' => "required",
         'pricepermarla' => "required",
