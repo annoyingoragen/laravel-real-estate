@@ -14,7 +14,7 @@ class AddRentSaleUserplots extends Migration
     public function up()
     {
          Schema::table('userplots',function (Blueprint $table){
-        $table->string('rent_sale')->default('sale');
+        $table->string('rent_sale');
         });
     }
 

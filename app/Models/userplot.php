@@ -34,6 +34,15 @@ class userplot extends Model
          'bookingdate',
          'plotprice',
          'plotimagedockey',
-         'rent_sale'
+         'rent_sale',
+         'Category',
+         'furnished',
+         'bedrooms',
+         'bathrooms',
+         'floorlevel',
+         'area',
+         'rent_sale',
+         'description',
+         'mapaddress'
     ];
 }

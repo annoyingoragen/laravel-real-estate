@@ -142,8 +142,8 @@
 
                                 <div  class="col-span-6 flex justify-center gap-6" >
                                     <div style="width:50%;" class="col-span-6 sm:col-span-3">
-                                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                                        <select wire:model="category" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <label for="Category" class="block text-sm font-medium text-gray-700">Category</label>
+                                        <select wire:model="Category" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             <option value="Residential" selected>Residential</option>
                                 
                                                 <option value="Residential">Residential</option>
@@ -155,10 +155,10 @@
                                     <div style="width:50%;" class="col-span-6 sm:col-span-3">
                                         <label for="furnished" class="block text-sm font-medium text-gray-700">Furnished</label>
                                         <select wire:model="furnished" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            <option value="Unfurnished" selected>Unfurnished</option>
+                                            <option value=0 selected>Unfurnished</option>
                                 
-                                                <option value="Furnished">Furnished</option>
-                                                <option value="Unfurnished">Unfurnished</option>
+                                                <option value=1>Furnished</option>
+                                                <option value=0>Unfurnished</option>
                                         
                                         </select>
                                    
@@ -176,7 +176,7 @@
 
                                 <div style="width:50%;" class="col-span-6 sm:col-span-3">
                                     <label for="bathrooms" class="block text-sm font-medium text-gray-700">Bathrooms</label>
-                                    <input type="text" wire:model="bathrooms" id="bathrooms" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input type="number" wire:model="bathrooms" id="bathrooms" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     @error('name') <span ...>{{ $message }}</span> @enderror
                                 </div>
 
@@ -203,8 +203,8 @@
                                         <select wire:model="rent" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             <option value="" selected>Choose state</option>
                                 
-                                                <option value="Rent">Rent</option>
-                                                <option value="Sell">Sell</option>
+                                                <option value="rent">Rent</option>
+                                                <option value="sale">Sell</option>
                                         
                                         </select>
                                    

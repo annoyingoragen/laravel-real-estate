@@ -66,9 +66,10 @@ class Registration extends Component
         'bathrooms'=>"required",
         'floorlevel'=>"required",
         'area'=>"required",
-        'buy'=>"required",
+        'rent'=>"required",
         'description'=>"required",
         'mapaddress'=>"required",
+
         'plotaddress' => "required",
         'regnum' => "required",
         'pricepermarla' => "required",
@@ -235,11 +236,13 @@ class Registration extends Component
 
     public function submit()
     {
-
+        
         $this->validate();
+        // dd($this);
+        
         $randomNumber = random_int(100000, 999999);
         $this->plotimagedockey = $randomNumber;
-
+        // dd("dp");
         $stack = array();
         foreach ($this->photo as $p) {
             $type = explode(".", $p->getClientOriginalName());
@@ -251,17 +254,18 @@ class Registration extends Component
             $p->storeAs('photos', $imageName);
 
 
-
             array_push($stack, $imageName);
         }
+        
+        // dd("pingp");
 
         $this->photo = json_encode($stack);
-
+            // dd($this->photo);
         plotimages::create([
             'plotimagetitle' => $this->photo,
             'plotimagedockey' => $this->plotimagedockey
         ]);
-
+        // dd("photo saved");
 
         $type = explode(".", $this->plotfile->getClientOriginalName());
         $name = $type[0];
@@ -277,7 +281,7 @@ class Registration extends Component
             'plotfiletitle' => $this->plotfile,
             'plotimagedockey' => $this->plotimagedockey
         ]);
-
+        // dd("file saved");
         // Add registration data to modal
         // dd( $validatedData );
         userplot::create([
@@ -298,8 +302,21 @@ class Registration extends Component
             'pricepermarla' => $this->pricepermarla,
             'bookingdate' => $this->bookingdate,
             'plotprice' => $this->plotprice,
-            'plotimagedockey' => $this->plotimagedockey
+            'plotimagedockey' => $this->plotimagedockey,
+
+
+            'Category'=>$this->Category,
+            'furnished'=>$this->furnished,
+            'bedrooms'=>$this->bedrooms,
+            'bathrooms'=>$this->bathrooms,
+            'floorlevel'=>$this->floorlevel,
+            'area'=>$this->area,
+            'rent_sale'=>$this->rent,
+            'description'=>$this->description,
+            'mapaddress'=>$this->mapaddress,
         ]);
+    
+        
 
         return redirect()->to('/admin/dashboard');
     }
@@ -373,13 +390,15 @@ class Registration extends Component
     {
         
         $id=request('id');
+        // dd($id);
         $user =userplot::find($id);
+        // dd($user);
         $file = plotfile::where('plotimagedockey', $user->plotimagedockey)->first();
         
 
         $randomNumber =$user->plotimagedockey;
 
-        
+        // dd($randomNumber);
         $filedetails = plotfile::where('plotimagedockey', $randomNumber)->first();
 
         /*********************************************************************** */
@@ -389,19 +408,20 @@ class Registration extends Component
         /*********************************************************************** */
         /*********************************************************************** */
         /**************deleting previous files from file folders */
-        $file = request('plotfile');
+      
+    
         if(!empty($file)){
             $previousfilename = $filedetails->plotfiletitle;
             $previousfilename = json_decode($previousfilename, true);
             if (File::exists(public_path('storage/files/' . $previousfilename))) {
                 File::delete(public_path('storage/files/' . $previousfilename));
             } else {
-                dd(public_path('storage\files\\' . $previousfilename));
+                // dd(public_path('storage\files\\' . $previousfilename));
             }    
         }
 
 
-
+      
 
         $file->delete();
 
@@ -410,11 +430,8 @@ class Registration extends Component
 
 
 
-        $photodetails = plotimages::where('plotimagedockey', $randomNumber)->first();
-
-        $photo = array();
-        $photo = request('photo');
-
+        
+        
         /*********************************************************************** */
         /*********************************************************************** */
         /*********************************************************************** */
@@ -425,7 +442,7 @@ class Registration extends Component
         /**************deleting previous photos from photo folders */
 
         if (!empty($photo)) {
-            $previousphotonames = $photodetails->plotimagetitle;
+            $previousphotonames = $photo->plotimagetitle;
             $previousphotonames = json_decode($previousphotonames, true);
 
             if (count($previousphotonames) > 0) {
@@ -455,7 +472,7 @@ class Registration extends Component
 
         $photo->delete();
          $user->delete();
-        
+        dd("ddeleted");
          return redirect('display');
     }
     public function uploadphotos()

@@ -28,9 +28,9 @@ class CreateUserplotsTable extends Migration
 
             $table->string('plotaddress')->unique();
             $table->string('regnum')->unique();
-            $table->integer('pricepermarla')->nullable()->change();
+            $table->integer('pricepermarla')->nullable();
             $table->date('bookingdate');
-            $table->integer('plotprice')->nullable()->change();
+            $table->integer('plotprice')->nullable();
             $table->integer('plotimagedockey')->unique();
             
         });
