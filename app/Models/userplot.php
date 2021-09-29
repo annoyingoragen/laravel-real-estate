@@ -45,4 +45,10 @@ class userplot extends Model
          'description',
          'mapaddress'
     ];
+
+
+    public function Users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

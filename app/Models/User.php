@@ -63,4 +63,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    
+    public function userplots()
+    {
+        return $this->belongsToMany(userplot::class);
+    }
 }

@@ -51,8 +51,13 @@
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                            {{ __('Home') }}
+                            {{ __('New Property') }}
                         </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('admin.requests') }}" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Requests') }}
+                        </x-jet-nav-link>
+                        
+                        
                         <x-jet-nav-link href="{{ route('display') }}" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Display') }}
                         </x-jet-nav-link>

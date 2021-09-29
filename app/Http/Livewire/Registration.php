@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\userplot;
+use App\Models\User;
 use App\Models\plotfile;
 use App\Models\plotimages;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
@@ -315,7 +316,7 @@ class Registration extends Component
             'description'=>$this->description,
             'mapaddress'=>$this->mapaddress,
         ]);
-    
+   
         
 
         return redirect()->to('/admin/dashboard');
@@ -472,7 +473,7 @@ class Registration extends Component
 
         $photo->delete();
          $user->delete();
-        dd("ddeleted");
+     
          return redirect('display');
     }
     public function uploadphotos()
@@ -555,6 +556,14 @@ class Registration extends Component
         $plot->save();
         return redirect('display');
 
+    }
+
+
+    public function viewrequests()
+    {
+     $u=   User::select("*")
+     ->whereNotNull('interested_in')->get();
+        dd($u);
     }
     public function render()
     {
